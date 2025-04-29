@@ -1,26 +1,72 @@
 # EX 1 Display operator precedence in the infix expression.
-## DATE: 01.04.2025
+## DATE: 03.03.2025
 ## AIM:
 To write a C program to find and display the priority of the operator in the given Postfix expression
 
 ## Algorithm
-1. 
-2. 
-3. 
-4.  
-5.   
+1. Start from the root node.
+
+2. Recursively traverse the left subtree.
+
+3. Recursively traverse the right subtree.
+
+4. Visit (process/print) the root node.
+
+5. Repeat the above steps until all nodes are visited.
+  
 
 ## Program:
 ```
 /*
-Program to find and display the priority of the operator in the given Postfix expression
-Developed by: 
-RegisterNumber:  
+Program to perform post order traversal of a binary tree.
+Developed by: Thaksha Rishi
+RegisterNumber: 212223100058
 */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+struct Node* createNode(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+void postOrderTraversal(struct Node* root) {
+    if (root == NULL)
+        return;
+    
+    postOrderTraversal(root->left);   
+    postOrderTraversal(root->right);  
+    printf("%d ", root->data);        
+}
+
+int main() {
+    struct Node* root = createNode(1);
+    root->left = createNode(2);
+    root->right = createNode(3);
+    root->left->left = createNode(4);
+    root->left->right = createNode(5);
+
+    printf("Postorder traversal of the binary tree:\n");
+    postOrderTraversal(root);
+
+    return 0;
+}
+
 ```
 
 ## Output:
 
+![image](https://github.com/user-attachments/assets/f650d379-e6ab-4489-b994-aa3a5a32094b)
 
 
 ## Result:
